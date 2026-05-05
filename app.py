@@ -22,7 +22,7 @@ status = st.sidebar.selectbox("Status", ["Idle", "Cleaning", "Completed"])
 # Auto adjust fault for reflection mode
 
 if image_type == "Reflecting Panel":
-fault = "Glare / Reflection"
+  fault = "Glare / Reflection"
 
 # Main display
 
