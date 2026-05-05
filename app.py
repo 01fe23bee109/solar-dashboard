@@ -28,4 +28,26 @@ st.divider()
 
 st.subheader("📸 Panel Image")
 
-st.image("panel.jpg", caption="Solar Panel View", use_container_width=True)
+from PIL import Image, ImageDraw
+
+# Load image
+img = Image.open("panel.jpg")
+draw = ImageDraw.Draw(img)
+
+# Get dimensions
+width, height = img.size
+
+# Define boxes
+boxes = {
+    "TL": (0, 0, width//2, height//2),
+    "TR": (width//2, 0, width, height//2),
+    "BL": (0, height//2, width//2, height),
+    "BR": (width//2, height//2, width, height),
+}
+
+# Draw rectangle on selected location
+if location in boxes:
+    draw.rectangle(boxes[location], outline="red", width=5)
+
+# Show image
+st.image(img, caption="Highlighted Fault Area", use_container_width=True)
