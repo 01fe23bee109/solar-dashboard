@@ -58,20 +58,20 @@ try:
   img = Image.open(image_path)
   draw = ImageDraw.Draw(img)
 
-width, height = img.size
+  width, height = img.size
 
-boxes = {
-    "TL": (0, 0, width // 2, height // 2),
-    "TR": (width // 2, 0, width, height // 2),
-    "BL": (0, height // 2, width // 2, height),
-    "BR": (width // 2, height // 2, width, height),
-}
+  boxes = {
+      "TL": (0, 0, width // 2, height // 2),
+      "TR": (width // 2, 0, width, height // 2),
+      "BL": (0, height // 2, width // 2, height),
+      "BR": (width // 2, height // 2, width, height),
+  }
+  
+  if location in boxes:
+      draw.rectangle(boxes[location], outline=color, width=5)
 
-if location in boxes:
-    draw.rectangle(boxes[location], outline=color, width=5)
+  st.image(img, caption="Highlighted Fault Area", use_container_width=True)
 
-st.image(img, caption="Highlighted Fault Area", use_container_width=True)
-```
 
 except:
 st.error(f"⚠ Image '{image_path}' not found or invalid.")
