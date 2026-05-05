@@ -12,7 +12,7 @@ st.sidebar.header("Control Panel")
 
 image_type = st.sidebar.selectbox(
 "Image Type",
-["Dirty Panel", "Reflecting Panel"]
+["Dirty Panel", "reflecting Panel"]
 )
 
 fault = st.sidebar.selectbox("Fault Type", ["Clean", "Dusty", "Bird Drop"])
@@ -21,8 +21,8 @@ status = st.sidebar.selectbox("Status", ["Idle", "Cleaning", "Completed"])
 
 # Auto adjust fault for reflection mode
 
-if image_type == "Reflecting Panel":
-  fault = "Glare / Reflection"
+if image_type == "reflecting Panel":
+  fault = "Glare / reflection"
 
 # Main display
 
@@ -81,7 +81,7 @@ st.image(img, caption="Highlighted Fault Area", use_container_width=True)
 
 # Status message
 
-if image_type == "Reflecting Panel":
+if image_type == "reflecting Panel":
   st.warning("⚠ High reflection detected → efficiency may drop")
 else:
   st.error("⚠ Dirt detected → cleaning required")
