@@ -50,7 +50,7 @@ if image_type == "Dirty Panel":
   color = "red"
 else:
     image_path = "reflecting.jpg"
-color = "yellow"
+    color = "yellow"
 
 # Try to load and display image
 
