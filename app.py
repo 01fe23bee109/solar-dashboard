@@ -12,7 +12,7 @@ st.sidebar.header("Control Panel")
 
 image_type = st.sidebar.selectbox(
 "Image Type",
-["Dirty Panel", "reflecting Panel"]
+["Dirty Panel", "Reflecting Panel"]
 )
 
 fault = st.sidebar.selectbox("Fault Type", ["Clean", "Dusty", "Bird Drop"])
@@ -21,8 +21,8 @@ status = st.sidebar.selectbox("Status", ["Idle", "Cleaning", "Completed"])
 
 # Auto adjust fault for reflection mode
 
-if image_type == "reflecting Panel":
-  fault = "Glare / reflection"
+if image_type == "Reflecting Panel":
+  fault = "Glare / Reflection"
 
 # Main display
 
@@ -43,7 +43,7 @@ st.divider()
 
 st.subheader(f"📸 {image_type} View")
 
-# Select image
+# Image selection
 
 if image_type == "Dirty Panel":
   image_path = "panel.jpg"
@@ -52,36 +52,32 @@ else:
   image_path = "reflecting.jpg"
   color = "yellow"
 
-# Load image
-
+try:
 img = Image.open(image_path)
 draw = ImageDraw.Draw(img)
 
-# Get dimensions
-
+```
 width, height = img.size
 
-# Define quadrant boxes
-
 boxes = {
-"TL": (0, 0, width//2, height//2),
-"TR": (width//2, 0, width, height//2),
-"BL": (0, height//2, width//2, height),
-"BR": (width//2, height//2, width, height),
+    "TL": (0, 0, width//2, height//2),
+    "TR": (width//2, 0, width, height//2),
+    "BL": (0, height//2, width//2, height),
+    "BR": (width//2, height//2, width, height),
 }
 
-# Draw highlight box
-
 if location in boxes:
-  draw.rectangle(boxes[location], outline=color, width=5)
-
-# Show image
+    draw.rectangle(boxes[location], outline=color, width=5)
 
 st.image(img, caption="Highlighted Fault Area", use_container_width=True)
+```
+
+except:
+st.error(f"⚠ Image '{image_path}' not found")
 
 # Status message
 
-if image_type == "reflecting Panel":
+if image_type == "Reflecting Panel":
   st.warning("⚠ High reflection detected → efficiency may drop")
 else:
   st.error("⚠ Dirt detected → cleaning required")
