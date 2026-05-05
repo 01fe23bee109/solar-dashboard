@@ -74,7 +74,7 @@ try:
 
 
 except:
-st.error(f"⚠ Image '{image_path}' not found or invalid.")
+  st.error(f"⚠ Image '{image_path}' not found or invalid.")
 
 # Status message
 
