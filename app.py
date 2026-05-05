@@ -18,6 +18,14 @@ image_type = st.sidebar.selectbox(
 fault = st.sidebar.selectbox("Fault Type", ["Clean", "Dusty", "Bird Drop"])
 location = st.sidebar.selectbox("Location", ["TL", "TR", "BL", "BR"])
 status = st.sidebar.selectbox("Status", ["Idle", "Cleaning", "Completed"])
+# Cleaning decision logic
+if image_type == "Dirty Panel":
+    if fault == "Clean":
+        cleaning_decision = "No Cleaning Required"
+    else:
+        cleaning_decision = "Cleaning Required"
+else:
+    cleaning_decision = "No Cleaning Needed (Reflection Issue)"
 
 # Adjust fault for reflection
 
@@ -42,6 +50,12 @@ st.write(f"Bottom Right: {'DIRTY' if location == 'BR' else 'CLEAN'}")
 st.divider()
 
 st.subheader(f"📸 {image_type} View")
+st.subheader("🧹 Cleaning Decision")
+
+if "Required" in cleaning_decision:
+    st.error(f"⚠ {cleaning_decision}")
+else:
+    st.success(f"✅ {cleaning_decision}")
 
 # Image selection
 
