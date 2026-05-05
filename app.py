@@ -45,13 +45,13 @@ st.subheader(f"📸 {image_type} View")
 
 # Select image and color
 
-if image_type == "Dirty Panel":
-  image_path = "panel.jpg"
-  color = "red"
+if image_type == "Reflecting Panel":
+    # custom reflection area (right-center)
+    box = (width//2, height//3, width, 2*height//3)
+    draw.rectangle(box, outline="yellow", width=5)
 else:
-    image_path = "reflecting.jpg"
-    color = "yellow"
-
+    if location in boxes:
+        draw.rectangle(boxes[location], outline=color, width=5)
 # Try to load and display image
 
 try:
