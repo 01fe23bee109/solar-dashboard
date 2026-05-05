@@ -73,7 +73,7 @@ boxes = {
 # Draw highlight box
 
 if location in boxes:
-draw.rectangle(boxes[location], outline=color, width=5)
+  draw.rectangle(boxes[location], outline=color, width=5)
 
 # Show image
 
@@ -82,6 +82,6 @@ st.image(img, caption="Highlighted Fault Area", use_container_width=True)
 # Status message
 
 if image_type == "Reflecting Panel":
-st.warning("⚠ High reflection detected → efficiency may drop")
+  st.warning("⚠ High reflection detected → efficiency may drop")
 else:
-st.error("⚠ Dirt detected → cleaning required")
+  st.error("⚠ Dirt detected → cleaning required")
