@@ -46,11 +46,11 @@ st.subheader(f"📸 {image_type} View")
 # Select image
 
 if image_type == "Dirty Panel":
-image_path = "panel.jpg"
-color = "red"
+  image_path = "panel.jpg"
+  color = "red"
 else:
-image_path = "reflecting.jpg"
-color = "yellow"
+  image_path = "reflecting.jpg"
+  color = "yellow"
 
 # Load image
 
