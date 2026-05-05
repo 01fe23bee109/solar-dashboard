@@ -58,7 +58,6 @@ try:
   img = Image.open(image_path)
   draw = ImageDraw.Draw(img)
 
-```
 width, height = img.size
 
 boxes = {
