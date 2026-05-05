@@ -6,7 +6,7 @@ st.set_page_config(page_title="Solar Dashboard", layout="wide")
 st.title("🌞 Solar Panel Monitoring Dashboard")
 st.caption("Prototype system for intelligent solar panel monitoring")
 
-# Sidebar controls
+# Sidebar
 
 st.sidebar.header("Control Panel")
 
@@ -19,7 +19,7 @@ fault = st.sidebar.selectbox("Fault Type", ["Clean", "Dusty", "Bird Drop"])
 location = st.sidebar.selectbox("Location", ["TL", "TR", "BL", "BR"])
 status = st.sidebar.selectbox("Status", ["Idle", "Cleaning", "Completed"])
 
-# Auto adjust fault for reflection mode
+# Adjust fault for reflection
 
 if image_type == "Reflecting Panel":
   fault = "Glare / Reflection"
@@ -34,23 +34,25 @@ col3.metric("Status", status)
 
 st.write("Panel View:")
 
-st.write(f"Top Left: {'DIRTY' if location=='TL' else 'CLEAN'}")
-st.write(f"Top Right: {'DIRTY' if location=='TR' else 'CLEAN'}")
-st.write(f"Bottom Left: {'DIRTY' if location=='BL' else 'CLEAN'}")
-st.write(f"Bottom Right: {'DIRTY' if location=='BR' else 'CLEAN'}")
+st.write(f"Top Left: {'DIRTY' if location == 'TL' else 'CLEAN'}")
+st.write(f"Top Right: {'DIRTY' if location == 'TR' else 'CLEAN'}")
+st.write(f"Bottom Left: {'DIRTY' if location == 'BL' else 'CLEAN'}")
+st.write(f"Bottom Right: {'DIRTY' if location == 'BR' else 'CLEAN'}")
 
 st.divider()
 
 st.subheader(f"📸 {image_type} View")
 
-# Image selection
+# Select image and color
 
 if image_type == "Dirty Panel":
   image_path = "panel.jpg"
   color = "red"
 else:
-  image_path = "reflecting.jpg"
-  color = "yellow"
+    image_path = "reflecting.jpg"
+color = "yellow"
+
+# Try to load and display image
 
 try:
   img = Image.open(image_path)
@@ -60,10 +62,10 @@ try:
 width, height = img.size
 
 boxes = {
-    "TL": (0, 0, width//2, height//2),
-    "TR": (width//2, 0, width, height//2),
-    "BL": (0, height//2, width//2, height),
-    "BR": (width//2, height//2, width, height),
+    "TL": (0, 0, width // 2, height // 2),
+    "TR": (width // 2, 0, width, height // 2),
+    "BL": (0, height // 2, width // 2, height),
+    "BR": (width // 2, height // 2, width, height),
 }
 
 if location in boxes:
@@ -73,7 +75,7 @@ st.image(img, caption="Highlighted Fault Area", use_container_width=True)
 ```
 
 except:
-  st.error(f"⚠ Image '{image_path}' not found")
+st.error(f"⚠ Image '{image_path}' not found or invalid.")
 
 # Status message
 
