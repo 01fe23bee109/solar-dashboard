@@ -53,8 +53,8 @@ else:
   color = "yellow"
 
 try:
-img = Image.open(image_path)
-draw = ImageDraw.Draw(img)
+  img = Image.open(image_path)
+  draw = ImageDraw.Draw(img)
 
 ```
 width, height = img.size
@@ -73,7 +73,7 @@ st.image(img, caption="Highlighted Fault Area", use_container_width=True)
 ```
 
 except:
-st.error(f"⚠ Image '{image_path}' not found")
+  st.error(f"⚠ Image '{image_path}' not found")
 
 # Status message
 
