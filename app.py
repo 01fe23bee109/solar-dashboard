@@ -24,3 +24,8 @@ st.write(f"Top Left: {'DIRTY' if location=='TL' else 'CLEAN'}")
 st.write(f"Top Right: {'DIRTY' if location=='TR' else 'CLEAN'}")
 st.write(f"Bottom Left: {'DIRTY' if location=='BL' else 'CLEAN'}")
 st.write(f"Bottom Right: {'DIRTY' if location=='BR' else 'CLEAN'}")
+st.divider()
+
+st.subheader("📸 Panel Image")
+
+st.image("panel.jpg", caption="Solar Panel View", use_container_width=True)
