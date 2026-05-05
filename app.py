@@ -43,16 +43,14 @@ st.divider()
 
 st.subheader(f"📸 {image_type} View")
 
-# Select image and color
+# Image selection
 
-if image_type == "Reflecting Panel":
-    # custom reflection area (right-center)
-    box = (width//2, height//3, width, 2*height//3)
-    draw.rectangle(box, outline="yellow", width=5)
+if image_type == "Dirty Panel":
+  image_path = "panel.jpg"
+  color = "red"
 else:
-    if location in boxes:
-        draw.rectangle(boxes[location], outline=color, width=5)
-# Try to load and display image
+    image_path = "reflecting.jpg"
+color = "yellow"
 
 try:
   img = Image.open(image_path)
@@ -60,18 +58,24 @@ try:
 
   width, height = img.size
 
+# Quadrant boxes
   boxes = {
-      "TL": (0, 0, width // 2, height // 2),
-      "TR": (width // 2, 0, width, height // 2),
-      "BL": (0, height // 2, width // 2, height),
-      "BR": (width // 2, height // 2, width, height),
+    "TL": (0, 0, width // 2, height // 2),
+    "TR": (width // 2, 0, width, height // 2),
+    "BL": (0, height // 2, width // 2, height),
+    "BR": (width // 2, height // 2, width, height),
   }
-  
-  if location in boxes:
-      draw.rectangle(boxes[location], outline=color, width=5)
 
-  st.image(img, caption="Highlighted Fault Area", use_container_width=True)
+  if image_type == "Reflecting Panel":
+    # Automatically highlight reflection region (center-right)
+    reflection_box = (width // 2, height // 3, width, 2 * height // 3)
+    draw.rectangle(reflection_box, outline="yellow", width=5)
+  else:
+    # Normal quadrant highlight
+    if location in boxes:
+        draw.rectangle(boxes[location], outline=color, width=5)
 
+  st.image(img, caption="Highlighted Area", use_container_width=True)
 
 except:
   st.error(f"⚠ Image '{image_path}' not found or invalid.")
